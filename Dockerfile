@@ -3,10 +3,11 @@
 FROM maven:3.6.0-jdk-8 AS build
 
 WORKDIR /opt/digishot-test
-COPY /c/Users/User/.m2 /root/.m2
+#COPY /c/Users/User/.m2 /root/.m2
 #VOLUME /c/Users/User/.m2 /root/.m2
 
 ADD ./pom.xml /opt/digishot-test/pom.xml
+RUN --mount=type=cache,target=/c/Users/User/.m2 mvn -f /opt/digishot-test/pom.xml clean package
 RUN mvn verify clean --fail-never
 
 COPY ./ /opt/digishot-test
