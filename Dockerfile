@@ -7,7 +7,8 @@ WORKDIR /opt/digishot-test
 #VOLUME /c/Users/User/.m2 /root/.m2
 
 ADD ./pom.xml /opt/digishot-test/pom.xml
-RUN --mount=type=cache,target=/c/Users/User/.m2 mvn -f /opt/digishot-test/pom.xml clean package
+#RUN --mount=type=cache,target=/c/Users/User/.m2 mvn -f /opt/digishot-test/pom.xml clean package
+RUN --mount=type=cache,target=/c/Users/User/.m2
 RUN mvn verify clean --fail-never
 
 COPY ./ /opt/digishot-test
