@@ -8,8 +8,10 @@ WORKDIR /opt/digishot-test
 
 ADD ./pom.xml /opt/digishot-test/pom.xml
 #RUN --mount=type=cache,target=/c/Users/User/.m2 mvn -f /opt/digishot-test/pom.xml clean package
-RUN --mount=type=cache,target=/c/Users/User/.m2
-RUN mvn verify clean --fail-never
+#RUN --mount=type=cache,target=/c/Users/User/.m2
+#RUN --mount=type=cache,target=/c/Users/User/.m2 mvn dependency:go-offline
+#RUN mvn verify clean --fail-never
+VOLUME "$HOME/.m2":/root/.m2
 
 COPY ./ /opt/digishot-test
 RUN mvn clean package -DskipTests
