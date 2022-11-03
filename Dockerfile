@@ -14,7 +14,8 @@ ADD ./pom.xml /opt/digishot-test/pom.xml
 #VOLUME "$HOME/.m2":/root/.m2
 
 COPY ./ /opt/digishot-test
-RUN --mount=type=cache,target="$HOME/.m2" mvn -f /opt/digishot-test/pom.xml clean package -DskipTests
+#RUN --mount=type=cache,target=$HOME/.m2 mvn clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Docker Deploy Stage
 FROM openjdk:8-jdk-alpine
