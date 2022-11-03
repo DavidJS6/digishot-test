@@ -20,7 +20,7 @@ node {
               echo "ArtifactId: ${env.ARTIFACT_ID}"
               echo "Version: ${env.VERSION}"
               //sh "docker image rm ${env.ARTIFACT_ID}:${env.VERSION}"
-              dockerImage = docker.build("${env.ARTIFACT_ID}:${env.VERSION}", "-v $HOME/.m2:/root/.m2 ./")
+              dockerImage = docker.build("${env.ARTIFACT_ID}:${env.VERSION}", "-v /c/Users/User/.m2:/root/.m2 ./")
           }
 
           stage('Deploy docker') {
