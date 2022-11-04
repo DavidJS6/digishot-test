@@ -4,14 +4,15 @@ pipeline {
         stage('Build Jar') {
             agent {
                 docker {
+                    label 'windows'
                     image 'maven:3.6.0-jdk-8'
-                    args '-v /c/Users/User/.m2:/root/.m2 -w /c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2/ -v /c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2/:/c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2/ -v /c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2@tmp/:/c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2@tmp/'
+                    args '-v /c/Users/User/.m2:/root/.m2'
                 }
             }
             steps {
-                git url: 'https://github.com/DavidJS6/digishot-test.git',
-                    //credentialsId: 'springdeploy-user',
-                    branch: 'master'
+//                 git url: 'https://github.com/DavidJS6/digishot-test.git',
+//                     //credentialsId: 'springdeploy-user',
+//                     branch: 'master'
 
                 script {
                     env.ARTIFACT_ID = readMavenPom().getArtifactId()
