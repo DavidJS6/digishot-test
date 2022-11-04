@@ -33,7 +33,7 @@ pipeline {
                 echo "Version: ${env.VERSION}"
                 unstash 'targetfiles'
                 //def image = docker.build("image-name:test", ' .')
-                dockerImage = docker.build("${env.ARTIFACT_ID}:${env.VERSION}")
+                def dockerImage = docker.build("${env.ARTIFACT_ID}:${env.VERSION}")
             }
         }
         stage('Deploy docker') {
