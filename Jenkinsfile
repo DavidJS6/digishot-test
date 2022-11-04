@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.6.0-jdk-8'
-                    args '-v /c/Users/User/.m2:/root/.m2'
+                    args '-v /c/Users/User/.m2:/root/.m2 -w /c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2/ -v /c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2/:/c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2/ -v /c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2@tmp/:/c/ProgramData/Jenkins/.jenkins/workspace/digishot-test@2@tmp/'
                 }
             }
             steps {
