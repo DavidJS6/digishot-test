@@ -23,11 +23,11 @@ pipeline {
             }
         }
         stage('Build Docker') {
-//             agent {
-//                 node {
-//                     label 'DockerDefault'
-//                 }
-//             }
+            agent {
+                node {
+                    label 'DockerDefault'
+                }
+            }
             steps {
                 echo "ArtifactId: ${env.ARTIFACT_ID}"
                 echo "Version: ${env.VERSION}"
@@ -37,11 +37,11 @@ pipeline {
             }
         }
         stage('Deploy docker') {
-//             agent {
-//                 node {
-//                     label 'DockerDefault'
-//                 }
-//             }
+            agent {
+                node {
+                    label 'DockerDefault'
+                }
+            }
             steps {
                 sh "docker stop ${env.ARTIFACT_ID} || true && docker rm ${env.ARTIFACT_ID} || true"
                 sh "docker run --name ${env.ARTIFACT_ID} --restart=on-failure --detach -d -p 9898:9898 ${env.ARTIFACT_ID}:${env.VERSION}"
