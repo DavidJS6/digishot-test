@@ -1,0 +1,28 @@
+# Docker Build Stage
+#FROM maven:3-jdk-8-alpine AS build
+FROM maven:3.6.0-jdk-8 AS build
+
+WORKDIR /opt/digishot-test
+#COPY /c/Users/User/.m2 /root/.m2
+#VOLUME /c/Users/User/.m2 /root/.m2
+
+ADD ./pom.xml /opt/digishot-test/pom.xml
+#RUN --mount=type=cache,target=/c/Users/User/.m2 mvn -f /opt/digishot-test/pom.xml clean package
+#RUN --mount=type=cache,target=/c/Users/User/.m2
+#RUN --mount=type=cache,target=/c/Users/User/.m2 mvn dependency:go-offline
+#RUN mvn verify clean --fail-never
+#VOLUME "$HOME/.m2":/root/.m2
+
+COPY ./ /opt/digishot-test
+#RUN --mount=type=cache,target=$HOME/.m2 mvn clean package -DskipTests
+RUN mvn clean package -DskipTests
+
+# Docker Deploy Stage
+FROM openjdk:8-jdk-alpine
+
+COPY --from=build /opt/digishot-test/target/*.jar digishot-test.jar
+
+ENV PORT 9898
+EXPOSE $PORT
+
+ENTRYPOINT ["java","-jar","-Xmx1024M","-Dserver.port=${PORT}","digishot-test.jar"]
