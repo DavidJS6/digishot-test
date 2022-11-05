@@ -39,6 +39,7 @@
 		</dependency>
 
 		<!-- DIGISHOT DEPENDENCIES -->
+		<!--
 		<dependency>
 			<groupId>bo.digicert</groupId>
 			<artifactId>digicert-common</artifactId>
@@ -54,6 +55,7 @@
 			<artifactId>spring-security-roles-filter</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		-->
 	</dependencies>
 
 	<build>

@@ -4,9 +4,9 @@ pipeline {
         stage('Build Jar') {
             agent {
                 docker {
-                    label 'windows'
+                    //label 'windows'
                     image 'maven:3.6.0-jdk-8'
-                    args '-v /c/Users/User/.m2:/root/.m2'
+                    //args '-v /c/Users/User/.m2:/root/.m2'
                 }
             }
             steps {
