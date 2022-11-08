@@ -15,7 +15,7 @@ pipeline {
 //                     //credentialsId: 'springdeploy-user',
 //                     branch: 'master'
 
-                sh 'ls /root/.m2/repository/bo/digicert/'
+                //sh 'ls /root/.m2/repository/bo/digicert/'
                 script {
                     env.ARTIFACT_ID = readMavenPom().getArtifactId()
                     env.VERSION = readMavenPom().getVersion()
