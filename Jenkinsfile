@@ -7,7 +7,7 @@ pipeline {
                     //label 'windows'
                     image 'maven:3.6.0-jdk-8'
                     //args '-v /c/Users/User/.m2:/root/.m2'
-                    args '-v /root/.m2:/root/.m2'
+                    args '-v /home/.m2:/root/.m2'
                 }
             }
             steps {
