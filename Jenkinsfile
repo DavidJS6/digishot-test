@@ -14,9 +14,9 @@ pipeline {
                 }
             }
             steps {
-//                 git url: 'https://github.com/DavidJS6/digishot-test.git',
-//                     //credentialsId: 'springdeploy-user',
-//                     branch: 'master'
+                git url: 'https://github.com/DavidJS6/digishot-test.git',
+                    //credentialsId: 'springdeploy-user',
+                    branch: 'master'
 
                 //sh 'ls /root/.m2/repository/bo/digicert/'
                 //writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
