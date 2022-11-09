@@ -19,7 +19,11 @@ pipeline {
                 //sh 'ls /root/.m2/repository/bo/digicert/'
                 //writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
                 writeFile file: 'settings.xml', text: "<settings><localRepository>/var/jenkins_home/.m2</localRepository></settings>"
-                sh 'mvn -B -s settings.xml clean install'
+                //sh 'mvn -B -s settings.xml clean install'
+                echo "${pwd()}"
+                sh "echo ${pwd()}"
+                sh "ls -la ${pwd()}"
+                sh "ls -la"
 
                 script {
                     env.ARTIFACT_ID = readMavenPom().getArtifactId()
