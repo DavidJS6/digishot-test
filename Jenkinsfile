@@ -9,7 +9,7 @@ pipeline {
                     //args '-v /c/Users/User/.m2:/root/.m2'
                     //args '-v /home/.m2:/root/.m2'
                     //args '-v $HOME/.m2:/root/.m2'
-                    args '-v $HOME/.m2:/var/.m2'
+                    args '-v $HOME/.m2:/root/.m2'
                 }
             }
             steps {
@@ -19,10 +19,9 @@ pipeline {
 
                 //sh 'ls /root/.m2/repository/bo/digicert/'
                 //writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
-                writeFile file: 'settings.xml', text: "<settings><localRepository>/var/.m2/repository</localRepository></settings>"
+                writeFile file: 'settings.xml', text: "<settings><localRepository>/root/.m2/repository</localRepository></settings>"
                 //sh 'mvn -B -s settings.xml clean install'
                 sh "ls -la ${pwd()}"
-                sh "ls -la /var/.m2"
 
                 script {
                     env.ARTIFACT_ID = readMavenPom().getArtifactId()
