@@ -17,7 +17,10 @@ pipeline {
 //                     branch: 'master'
 
                 //sh 'ls /root/.m2/repository/bo/digicert/'
-                sh 'mvn -B'
+                //writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
+                writeFile file: 'settings.xml', text: "<settings><localRepository>/var/jenkins_home/.m2</localRepository></settings>"
+                sh 'mvn -B -s settings.xml clean install'
+
                 script {
                     env.ARTIFACT_ID = readMavenPom().getArtifactId()
                     env.VERSION = readMavenPom().getVersion()
