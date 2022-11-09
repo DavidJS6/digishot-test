@@ -19,17 +19,15 @@ pipeline {
 
                 //sh 'ls /root/.m2/repository/bo/digicert/'
                 //writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
-                writeFile file: 'settings.xml', text: "<settings><localRepository>$HOME/.m2/repository</localRepository></settings>"
-                //sh 'mvn -B -s settings.xml clean install'
-                sh "ls -la $HOME/.m2/repository/bo/digicert"
+                //writeFile file: 'settings.xml', text: "<settings><localRepository>$HOME/.m2/repository</localRepository></settings>"
 
                 script {
                     env.ARTIFACT_ID = readMavenPom().getArtifactId()
                     env.VERSION = readMavenPom().getVersion()
                 }
 
-                //sh 'mvn clean package -DskipTests'
-                sh 'mvn -B -s settings.xml clean package -DskipTests'
+                sh 'mvn clean package -DskipTests'
+                //sh 'mvn -B -s settings.xml clean package -DskipTests'
                 stash includes: 'target/*.jar', name: 'targetfiles'
             }
         }
