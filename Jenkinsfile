@@ -46,7 +46,7 @@ pipeline {
                     unstash 'targetfiles'
                     //def image = docker.build("image-name:test", ' .')
                     //def dockerImage = docker.build("${env.ARTIFACT_ID}:${env.VERSION}")
-                    def dockerImage = docker.build("${env.ARTIFACT_ID}:${env.VERSION}", "$HOME/dockerfiles/Dockerfile")
+                    def dockerImage = docker.build("${env.ARTIFACT_ID}:${env.VERSION}", "$HOME/dockerfiles")
                 }
             }
         }
