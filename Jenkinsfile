@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    // To prevent auto-checking from code repository in declarative pipeline
     options { skipDefaultCheckout() }
     stages {
         stage('Build Jar') {
@@ -14,9 +15,12 @@ pipeline {
                 }
             }
             steps {
-                git url: 'https://github.com/DavidJS6/digishot-test.git',
-                    //credentialsId: 'springdeploy-user',
-                    branch: 'master'
+//                 git url: 'https://github.com/DavidJS6/digishot-test.git',
+//                     //credentialsId: 'springdeploy-user',
+//                     branch: 'master'
+                    git url: 'https://github.com/Digicert-Bolivia/digishot.git',
+                    credentialsId: 'github-credentials',
+                    branch: 'develop'
 
                 //sh 'ls /root/.m2/repository/bo/digicert/'
                 //writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
