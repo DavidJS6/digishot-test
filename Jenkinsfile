@@ -17,6 +17,7 @@ pipeline {
 //                     branch: 'master'
 
                 //sh 'ls /root/.m2/repository/bo/digicert/'
+                sh 'mvn -B'
                 script {
                     env.ARTIFACT_ID = readMavenPom().getArtifactId()
                     env.VERSION = readMavenPom().getVersion()
