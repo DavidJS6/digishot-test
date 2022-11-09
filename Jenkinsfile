@@ -8,7 +8,8 @@ pipeline {
                     image 'maven:3.8.1-adoptopenjdk-11'
                     //args '-v /c/Users/User/.m2:/root/.m2'
                     //args '-v /home/.m2:/root/.m2'
-                    args '-v $HOME/.m2:/root/.m2'
+                    //args '-v $HOME/.m2:/root/.m2'
+                    args '-v $HOME/.m2:${pwd()}/.m2'
                 }
             }
             steps {
@@ -18,7 +19,7 @@ pipeline {
 
                 //sh 'ls /root/.m2/repository/bo/digicert/'
                 //writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2repo</localRepository></settings>"
-                writeFile file: 'settings.xml', text: "<settings><localRepository>/var/jenkins_home/.m2</localRepository></settings>"
+                writeFile file: 'settings.xml', text: "<settings><localRepository>${pwd()}/.m2</localRepository></settings>"
                 //sh 'mvn -B -s settings.xml clean install'
                 echo "${pwd()}"
                 sh "echo ${pwd()}"
@@ -30,7 +31,8 @@ pipeline {
                     env.VERSION = readMavenPom().getVersion()
                 }
 
-                sh 'mvn clean package -DskipTests'
+                //sh 'mvn clean package -DskipTests'
+                sh 'mvn -B -s settings.xml clean package -DskipTests'
                 stash includes: 'target/*.jar', name: 'targetfiles'
             }
         }
